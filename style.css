@@ -1,0 +1,25 @@
+body {
+  display: block;
+  text-align: center;
+  font-family: cursive;
+}
+
+h3 {
+  line-height: 25px;
+}
+#temp {
+  font-size: 25pt;
+}
+ul {
+  padding: 10px;
+  list-style: none;
+}
+
+li {
+  line-height: 30px;
+  display: inline;
+}
+button {
+  margin: 15px;
+  background: cyan;
+}
