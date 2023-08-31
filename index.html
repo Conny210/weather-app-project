@@ -8,22 +8,34 @@
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
   </head>
   <body>
-    <form id="search">
-      <input type="submit" value="🔍" />
-      <input type="text" id="newCity" placeholder="Enter a city" />
-    </form>
+    <div class="container">
+      <div class="app">
+        <form id="search" class="mb-3">
+          <div class="search-row">
+            <div class="col-9">
+              <input
+                type="search"
+                id="newCity"
+                placeholder="Enter a city name..."
+                class="search-form"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="🔍"
+                class="btn btn-outline-secondary"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <button class="currentLoc">Current location</button>
     <h1 id="city">☁️ Gauteng ☁️</h1>
     <h3 id="date">Today</h3>
     <h3><span id="temp">8</span> ℃ 🥶</h3>
-    <ul>
-      <li>Mon ☁️</li>
-      <li>Tue 🌦️</li>
-      <li>Wed ⛅</li>
-      <li>Thurs ⛈️</li>
-      <li>Fri ☀️</li>
-      <li>Sat 🌬️</li>
-    </ul>
 
     <p>
       <a href="https://github.com/Conny210/weather-app-project"
