@@ -19,12 +19,12 @@ function currentDate(time) {
 
 // Display weather data on the webpage
 function displayTemperature(response) {
-  const temperatureElement = document.querySelector("#temperature");
+  const temperatureElement = document.querySelector("#temp");
   const cityElement = document.querySelector("#city");
   const descriptionElement = document.querySelector("#description");
   const humidityElement = document.querySelector("#humidity");
   const windElement = document.querySelector("#wind");
-  const dateElement = document.querySelector("#date");
+  const dateElement = document.querySelector("#today");
   const iconElement = document.querySelector("#icon");
 
   const celsiusTemperature = response.data.main.temp;
