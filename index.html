@@ -3,76 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My weather App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>My Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css" />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-     <link rel="stylesheet" href="src/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="appContainer">
-      <div class="app">
-        <form id="search" class="mb-3">
-          <div class="search-row">
-            <div class="col-9">
-              <input
-                type="search"
-                id="newCity"
-                placeholder="Enter a city name..."
-                class="search-form"
-              />
-            </div>
-            <div class="col-6">
-              <input
-                type="submit"
-                value="🔍"
-                class="btn btn-outline-secondary"
-              />
-              <button
-                type="button"
-                class="btn btn-outline-success"
-                id="currentLoc"
-              >
-                📍🗺️
-              </button>
-            </div>
-          </div>
-        </form>
-        <div class="content">
-          <h1 id="city"></h1>
-          <ul>
-            <li>Last updated on: <span id="today"></span></li>
-            <li id="description"></li>
-          </ul>
-        </div>
-        <div class="tempInfo">
-          <div class="col-6">
-            <div class="clearfix weather">
-              <img src="" alt="Clear" id="icon" class="float-left" />
-              <div class="float-left">
-                <strong id="temp"></strong
-                ><span class="units"
-                  ><a href="#" id="celcius" class="active">℃</a> |
-                  <a href="#" id="farenheit">℉</a></span
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <ul>
-              <li>Humidity: <span id="humidity"></span>%</li>
-              <li>Wind: <span id="wind"></span> km/h</li>
-            </ul>
-          </div>
-        </div>
-        <p>
-          <a href="https://github.com/Conny210/weather-app-project"
-            >Open-source code</a
-          >
-          by Conny
-        </p>
-      </div>
-    </div>
+    <form id="search">
+      <input type="submit" value="🔍" />
+      <input type="text" id="newCity" placeholder="Enter a city" />
+    </form>
+    <button class="currentLoc">Current location</button>
+    <h1 id="city">☁️ Gauteng ☁️</h1>
+    <h3 id="date">Today</h3>
+    <h3>
+      <span id="temp"> 8 </span>
+      <span>
+        <a href="#" id="celcius"> ℃</a>|<a href="#" id="farhenheit">℉</a>
+      </span>
+      🥶
+    </h3>
+    <ul>
+      <li>Mon ☁️</li>
+      <li>Tue 🌦️</li>
+      <li>Wed ⛅</li>
+      <li>Thurs ⛈️</li>
+      <li>Fri ☀️</li>
+      <li>Sat 🌬️</li>
+    </ul>
     <script src="src/index.js"></script>
   </body>
 </html>
