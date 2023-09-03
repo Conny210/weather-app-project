@@ -27,20 +27,6 @@ let dateTime = `${currentDay} ${hour}:${minutes}`;
 let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
-function tempFarhenheit(params) {
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = "46";
-}
-let farhenheit = document.querySelector("#farhenheit");
-farhenheit.addEventListener("click", tempFarhenheit);
-
-function tempCelcius(params) {
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = "8";
-}
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", tempCelcius);
-
 function search(city) {
  
   let units = "metric";
@@ -80,6 +66,26 @@ function showTemp(response) {
   icon.setAttribute("alt", response.data.condition.description);
 
 }
+
+let celciusTemp = 0; // Initialize celciusTemp outside the functions
+
+function tempCelcius(response) {
+  let newTemp = document.querySelector("#temp");
+  celciusTemp = Math.round(response.data.temperature.current);
+  newTemp.innerHTML = celciusTemp;
+}
+
+let celcius = document.querySelector("#celcius");
+celcius.addEventListener("click", tempCelcius);
+
+function tempFarhenheit() {
+  let temp = document.querySelector("#temp");
+  let fahrenheitTemp = Math.round((celciusTemp * 9/5) + 32);
+  temp.innerHTML = fahrenheitTemp;
+}
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", tempFarhenheit);
 
 function clickedButton() {
   function getPosition(position) {
