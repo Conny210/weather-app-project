@@ -77,11 +77,9 @@ function showTemp(response) {
 
 ///
 function clickedButton() {
-  function getPosition(response) {
-    console.log(response.coordinates.latitude);
-    console.log(response.coordinates.longitude);
-    let lat = response.coordinates.latitude;
-    let lon = response.coordinates.longitude;
+  function getPosition(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
     let units = "metric";
 
     function showLocationTemp(response) {
@@ -93,14 +91,11 @@ function clickedButton() {
       let currentCityLoc = document.querySelector("#city");
       currentCityLoc.innerHTML = currentCity;
     }
-
+    let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
     axios
-      .get(`${apiUrl}lat=${lat}&lon=${lon}&appid=${apiKey}&units=${units}`)
-      .then(showLocationTemp);
+      .get(apiUrl).then(showLocationTemp);
   }
-
-  let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
-  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
 
   navigator.geolocation.getCurrentPosition(getPosition);
 }
