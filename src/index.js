@@ -96,6 +96,17 @@ function clickedButton() {
 
       let currentWind = document.querySelector("#wind");
       currentWind.innerHTML = response.data.wind.speed;
+
+      let currentWeather = document.querySelector("#weatherDescription");
+      currentWeather.innerHTML = response.data.condition.description;
+
+      let currentIcon = document.querySelector("#weather-icon");
+        currentIcon.setAttribute(
+          "src",
+          `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+        );
+        currentIcon.setAttribute("alt", response.data.condition.description);
+
     }
     let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
