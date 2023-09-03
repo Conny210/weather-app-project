@@ -45,6 +45,7 @@ function cityName(event) {
   event.preventDefault();
   let input = document.querySelector("#newCity");
   let city = document.querySelector("#city");
+  
   city.innerHTML = input.value;
 
   let newCity = input.value;
@@ -58,18 +59,15 @@ let form = document.querySelector("form");
 form.addEventListener("submit", cityName);
 
 function showTemp(response) {
+    let humidityDescription = response.data.temperature.humidity;
+    let windDescription = response.data.wind.speed;
+    let humidity = document.querySelector("#humidity");
+    let wind = document.querySelector("wind");
+    humidity.innerHTML = humidityDescription;
+    wind.innerHTML = windDescription;
   let temp = Math.round(response.data.temperature.current);
   let newTemp = document.querySelector("#temp");
   newTemp.innerHTML = temp;
-}
-
-function weather(response) {
-  let humidityDescription = response.data.temperature.humidity;
-  let windDescription = response.data.wind.speed;
-  let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("wind");  
-humidity.innerHTML = humidityDescription;
-wind.innerHTML = windDescription;
 }
 
 function clickedButton() {
