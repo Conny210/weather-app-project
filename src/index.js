@@ -59,15 +59,25 @@ let form = document.querySelector("form");
 form.addEventListener("submit", cityName);
 
 function showTemp(response) {
-  let humidityDescription = response.data.temperature.humidity;
-  console.log(humidityDescription);
-  let windDescription = response.data.wind.speed;
   let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("#wind");
-  humidity.innerHTML = humidityDescription;
-  wind.innerHTML = windDescription;
-  let temp = Math.round(response.data.temperature.current);
+  let wind = document.querySelector("#wind");  
   let newTemp = document.querySelector("#temp");
+  let icon = document.querySelector("#weather-icon");
+  let weatherDescription = document.querySelector("#weatherDescription");
+
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = response.data.wind.speed;
+  weatherDescription.innerHTML = response.data.condition.description;
+  
+  icon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}"`
+  );
+  icon.setAttribute("alt", response.data.condition.description);
+  
+
+  let temp = Math.round(response.data.temperature.current);
+ 
   newTemp.innerHTML = temp;
 }
 
