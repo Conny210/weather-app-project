@@ -11,11 +11,15 @@ form {
 h3 {
   line-height: 25px;
 }
+
+#temp-wrapper {
+  padding: 25px;
+}
+
 #temp {
-  font-size: 25pt;
+  font-size: 35pt;
 }
 ul {
-  padding: 10px;
   list-style: none;
 }
 
