@@ -28,7 +28,6 @@ let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
 function search(city) {
- 
   let units = "metric";
   let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
   let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
@@ -40,15 +39,15 @@ function handleSubmit(event) {
   let cityInputElement = document.querySelector("#newCity");
   let city = document.querySelector("#city");
   city.innerHTML = cityInputElement.value;
-   
- search(cityInputElement.value);
+
+  search(cityInputElement.value);
 }
 
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
-let celciusTemp = 0; // Initialize celciusTemp outside the functions
-let originalTempInCelsius = 0; // Store the original temperature in Celsius
+let celciusTemp = 0;
+let originalTempInCelsius = 0;
 
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
@@ -58,7 +57,7 @@ function showTemp(response) {
   let weatherDescription = document.querySelector("#weatherDescription");
 
   celciusTemp = Math.round(response.data.temperature.current);
-  originalTempInCelsius = celciusTemp; // Store the original Celsius temperature
+  originalTempInCelsius = celciusTemp;
   newTemp.innerHTML = celciusTemp;
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
@@ -74,7 +73,7 @@ function showTemp(response) {
 let celcius = document.querySelector("#celcius");
 celcius.addEventListener("click", function () {
   let temp = document.querySelector("#temp");
-  temp.innerHTML = originalTempInCelsius; // Display the original Celsius temperature
+  temp.innerHTML = originalTempInCelsius;
 });
 
 let fahrenheit = document.querySelector("#fahrenheit");
@@ -84,14 +83,14 @@ fahrenheit.addEventListener("click", function () {
   temp.innerHTML = fahrenheitTemp;
 });
 
-
-// ... (previous code)
-
 function clickedButton() {
   function getPosition(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let units = "metric";
+
+    let currentCelciusTemp = 0;
+    let currentFahrenheitTemp = 0;
 
     function showLocationTemp(response) {
       let newLocTemp = document.querySelector("#temp");
@@ -116,22 +115,19 @@ function clickedButton() {
       );
       currentIcon.setAttribute("alt", response.data.condition.description);
 
-      // Calculate and display the temperature in Celsius and Fahrenheit
-      let currentCelciusTemp = Math.round(response.data.temperature.current);
-      let currentFahrenheitTemp = Math.round(
-        (currentCelciusTemp * 9) / 5 + 32
-      );
+      currentCelciusTemp = Math.round(response.data.temperature.current);
+      currentFahrenheitTemp = Math.round((currentCelciusTemp * 9) / 5 + 32);
 
-      let temp = document.querySelector("#temp");
-      let celcius = document.querySelector("#celcius");
-      let fahrenheit = document.querySelector("#fahrenheit");
+      let currentTemp = document.querySelector("#temp");
+      let currentCelcius = document.querySelector("#celcius");
+      let currentFahrenheit = document.querySelector("#fahrenheit");
 
-      celcius.addEventListener("click", function () {
-        temp.innerHTML = currentCelciusTemp;
+      currentCelcius.addEventListener("click", function () {
+        currentTemp.innerHTML = currentCelciusTemp;
       });
 
-      fahrenheit.addEventListener("click", function () {
-        temp.innerHTML = currentFahrenheitTemp;
+      currentFahrenheit.addEventListener("click", function () {
+        currentTemp.innerHTML = currentFahrenheitTemp;
       });
     }
 
@@ -147,4 +143,3 @@ let element = document.querySelector("button");
 element.addEventListener("click", clickedButton);
 
 search("Polokwane");
-
