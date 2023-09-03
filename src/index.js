@@ -21,7 +21,7 @@ let minutes = now.getMinutes();
  if (minutes < 10) {
    minutes = `0${minutes}`;
  }
- 
+
 let dateTime = `${currentDay} ${hour}:${minutes}`;
 
 let date = document.querySelector("#date");
@@ -77,11 +77,11 @@ function showTemp(response) {
 
 ///
 function clickedButton() {
-  function getPosition(position) {
-    console.log(position.coordinates.latitude);
-    console.log(position.coordinates.longitude);
-    let lat = position.coordinates.latitude;
-    let lon = position.coordinates.longitude;
+  function getPosition(response) {
+    console.log(response.coordinates.latitude);
+    console.log(response.coordinates.longitude);
+    let lat = response.coordinates.latitude;
+    let lon = response.coordinates.longitude;
     let units = "metric";
 
     function showLocationTemp(response) {
