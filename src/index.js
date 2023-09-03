@@ -65,15 +65,15 @@ function showTemp(response) {
   let icon = document.querySelector("#weather-icon");
   let weatherDescription = document.querySelector("#weatherDescription");
 
-  humidity.innerHTML = response.data.daily.temperature.humidity;
-  wind.innerHTML = response.data.daily.wind.speed;
-  weatherDescription.innerHTML = response.data.daily.condition.description;
+  humidity.innerHTML = response.data.temperature.humidity;
+  wind.innerHTML = response.data.wind.speed;
+  weatherDescription.innerHTML = response.data.condition.description;
   
   icon.setAttribute(
     "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.daily.condition.icon}.png`
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-  icon.setAttribute("alt", response.data.daily.condition.description);
+  icon.setAttribute("alt", response.data.condition.description);
   
 
   let temp = Math.round(response.data.temperature.current);
