@@ -19,10 +19,6 @@ ul {
   list-style: none;
 }
 
-li {
-  line-height: 30px;
-  display: inline;
-}
 button {
   margin: 15px;
   background: cyan;
