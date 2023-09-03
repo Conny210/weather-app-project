@@ -54,9 +54,9 @@ function cityName(event) {
 
   let newCity = input.value;
   let units = "metric";
-  let apiKey = "73aa23218a979a57aac07ba4ab59beb9";
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&units=${units}&appid=${apiKey}`;
-  axios.get(url).then(showTemp);
+  let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
+  let url = `https://api.shecodes.io/weather/v1/current?query=${newCity}&key=${apiKey}&units=${units}`; 
+   axios.get(url).then(showTemp);
 }
 
 let form = document.querySelector("form");
@@ -92,8 +92,8 @@ function clickedButton() {
       .then(showLocationTemp);
   }
 
-  let apiKey = "73aa23218a979a57aac07ba4ab59beb9";
-  let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+  let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
+  let apiUrl = "https://api.shecodes.io/weather/v1/current?";
 
   navigator.geolocation.getCurrentPosition(getPosition);
 }
