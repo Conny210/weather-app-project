@@ -63,7 +63,7 @@ let form = document.querySelector("form");
 form.addEventListener("submit", cityName);
 
 function showTemp(response) {
-  let temp = Math.round(response.temperature.current);
+  let temp = Math.round(response.data.temperature.current);
   let newTemp = document.querySelector("#temp");
   newTemp.innerHTML = temp;
 }
