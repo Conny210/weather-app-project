@@ -85,13 +85,17 @@ function clickedButton() {
     let units = "metric";
 
     function showLocationTemp(response) {
-      let locTemp = Math.round(response.data.temperature.current);
       let newLocTemp = document.querySelector("#temp");
-      newLocTemp.innerHTML = locTemp;
+      newLocTemp.innerHTML = Math.round(response.data.temperature.current);
 
-      let currentCity = response.data.city;
       let currentCityLoc = document.querySelector("#city");
-      currentCityLoc.innerHTML = currentCity;
+      currentCityLoc.innerHTML = response.data.city;
+
+     let currentHumidity = document.querySelector("#humidity");
+     currentHumidity.innerHTML = response.data.temperature.humidity;
+
+      let currentWind = document.querySelector("#wind");
+      currentWind.innerHTML = response.data.wind.speed;
     }
     let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
