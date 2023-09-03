@@ -47,45 +47,45 @@ function handleSubmit(event) {
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
+let celciusTemp = 0; // Initialize celciusTemp outside the functions
+let originalTempInCelsius = 0; // Store the original temperature in Celsius
+
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
-  let wind = document.querySelector("#wind");  
+  let wind = document.querySelector("#wind");
   let newTemp = document.querySelector("#temp");
   let icon = document.querySelector("#weather-icon");
   let weatherDescription = document.querySelector("#weatherDescription");
 
-  newTemp.innerHTML = Math.round(response.data.temperature.current);
+  celciusTemp = Math.round(response.data.temperature.current);
+  originalTempInCelsius = celciusTemp; // Store the original Celsius temperature
+  newTemp.innerHTML = celciusTemp;
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
   weatherDescription.innerHTML = response.data.condition.description;
-  
+
   icon.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   icon.setAttribute("alt", response.data.condition.description);
-
-}
-
-let celciusTemp = 0; // Initialize celciusTemp outside the functions
-
-function tempCelcius(response) {
-  let newTemp = document.querySelector("#temp");
-  celciusTemp = Math.round(response.data.temperature.current);
-  newTemp.innerHTML = celciusTemp;
 }
 
 let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", tempCelcius);
-
-function tempFarhenheit() {
+celcius.addEventListener("click", function () {
   let temp = document.querySelector("#temp");
-  let fahrenheitTemp = Math.round((celciusTemp * 9/5) + 32);
-  temp.innerHTML = fahrenheitTemp;
-}
+  temp.innerHTML = originalTempInCelsius; // Display the original Celsius temperature
+});
 
 let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", tempFarhenheit);
+fahrenheit.addEventListener("click", function () {
+  let temp = document.querySelector("#temp");
+  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
+  temp.innerHTML = fahrenheitTemp;
+});
+
+
+// ... (previous code)
 
 function clickedButton() {
   function getPosition(position) {
@@ -100,8 +100,8 @@ function clickedButton() {
       let currentCityLoc = document.querySelector("#city");
       currentCityLoc.innerHTML = response.data.city;
 
-     let currentHumidity = document.querySelector("#humidity");
-     currentHumidity.innerHTML = response.data.temperature.humidity;
+      let currentHumidity = document.querySelector("#humidity");
+      currentHumidity.innerHTML = response.data.temperature.humidity;
 
       let currentWind = document.querySelector("#wind");
       currentWind.innerHTML = response.data.wind.speed;
@@ -110,13 +110,31 @@ function clickedButton() {
       currentWeather.innerHTML = response.data.condition.description;
 
       let currentIcon = document.querySelector("#weather-icon");
-        currentIcon.setAttribute(
-          "src",
-          `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-        );
-        currentIcon.setAttribute("alt", response.data.condition.description);
+      currentIcon.setAttribute(
+        "src",
+        `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+      );
+      currentIcon.setAttribute("alt", response.data.condition.description);
 
+      // Calculate and display the temperature in Celsius and Fahrenheit
+      let currentCelciusTemp = Math.round(response.data.temperature.current);
+      let currentFahrenheitTemp = Math.round(
+        (currentCelciusTemp * 9) / 5 + 32
+      );
+
+      let temp = document.querySelector("#temp");
+      let celcius = document.querySelector("#celcius");
+      let fahrenheit = document.querySelector("#fahrenheit");
+
+      celcius.addEventListener("click", function () {
+        temp.innerHTML = currentCelciusTemp;
+      });
+
+      fahrenheit.addEventListener("click", function () {
+        temp.innerHTML = currentFahrenheitTemp;
+      });
     }
+
     let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(showLocationTemp);
@@ -129,3 +147,4 @@ let element = document.querySelector("button");
 element.addEventListener("click", clickedButton);
 
 search("Polokwane");
+
