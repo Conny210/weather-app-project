@@ -27,16 +27,6 @@ let dateTime = `${currentDay} ${hour}:${minutes}`;
 let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
-//function cityName(event) {
-  //event.preventDefault();
-  //let input = document.querySelector("#newCity");
-  //let city = document.querySelector("#city");
-  //city.innerHTML = input.value;
-//}
-
-//let form = document.querySelector("form");
-//form.addEventListener("submit", cityName);
-
 function tempFarhenheit(params) {
   let temp = document.querySelector("#temp");
   temp.innerHTML = "46";
@@ -50,8 +40,6 @@ function tempCelcius(params) {
 }
 let celcius = document.querySelector("#celcius");
 celcius.addEventListener("click", tempCelcius);
-
-//week 5//
 
 function cityName(event) {
   event.preventDefault();
@@ -75,7 +63,15 @@ function showTemp(response) {
   newTemp.innerHTML = temp;
 }
 
-///
+function weather(response) {
+  let humidityDescription = response.data.temperature.humidity;
+  let windDescription = response.data.wind.speed;
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("wind");  
+humidity.innerHTML = humidityDescription;
+wind.innerHTML = windDescription;
+}
+
 function clickedButton() {
   function getPosition(position) {
     let lat = position.coords.latitude;
