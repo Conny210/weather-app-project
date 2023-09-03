@@ -71,18 +71,18 @@ function showTemp(response) {
 ///
 function clickedButton() {
   function getPosition(position) {
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
+    console.log(position.coordinates.latitude);
+    console.log(position.coordinates.longitude);
+    let lat = position.coordinates.latitude;
+    let lon = position.coordinates.longitude;
     let units = "metric";
 
     function showLocationTemp(response) {
-      let locTemp = Math.round(response.data.main.temp);
+      let locTemp = Math.round(response.data.temperature.current);
       let newLocTemp = document.querySelector("#temp");
       newLocTemp.innerHTML = locTemp;
 
-      let currentCity = response.data.name;
+      let currentCity = response.data.city;
       let currentCityLoc = document.querySelector("#city");
       currentCityLoc.innerHTML = currentCity;
     }
