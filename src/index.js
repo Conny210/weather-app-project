@@ -41,22 +41,25 @@ function tempCelcius(params) {
 let celcius = document.querySelector("#celcius");
 celcius.addEventListener("click", tempCelcius);
 
-function cityName(event) {
-  event.preventDefault();
-  let input = document.querySelector("#newCity");
-  let city = document.querySelector("#city");
-
-  city.innerHTML = input.value;
-
-  let newCity = input.value;
+function search(city) {
+ 
   let units = "metric";
   let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
-  let url = `https://api.shecodes.io/weather/v1/current?query=${newCity}&key=${apiKey}&units=${units}`;
+  let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
   axios.get(url).then(showTemp);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#newCity");
+  let city = document.querySelector("#city");
+  city.innerHTML = cityInputElement.value;
+   
+ search(cityInputElement.value);
+}
+
 let form = document.querySelector("form");
-form.addEventListener("submit", cityName);
+form.addEventListener("submit", handleSubmit);
 
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
@@ -118,3 +121,5 @@ function clickedButton() {
 
 let element = document.querySelector("button");
 element.addEventListener("click", clickedButton);
+
+search("Polokwane");
