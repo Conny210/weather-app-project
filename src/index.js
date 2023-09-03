@@ -13,14 +13,14 @@ let day = now.getDay();
 let currentDay = days[day];
 
 let hour = now.getHours();
- if (hour < 10) {
-   hour = `0${hour}`;
- }
+if (hour < 10) {
+  hour = `0${hour}`;
+}
 
 let minutes = now.getMinutes();
- if (minutes < 10) {
-   minutes = `0${minutes}`;
- }
+if (minutes < 10) {
+  minutes = `0${minutes}`;
+}
 
 let dateTime = `${currentDay} ${hour}:${minutes}`;
 
@@ -45,26 +45,27 @@ function cityName(event) {
   event.preventDefault();
   let input = document.querySelector("#newCity");
   let city = document.querySelector("#city");
-  
+
   city.innerHTML = input.value;
 
   let newCity = input.value;
   let units = "metric";
   let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
-  let url = `https://api.shecodes.io/weather/v1/current?query=${newCity}&key=${apiKey}&units=${units}`; 
-   axios.get(url).then(showTemp);
+  let url = `https://api.shecodes.io/weather/v1/current?query=${newCity}&key=${apiKey}&units=${units}`;
+  axios.get(url).then(showTemp);
 }
 
 let form = document.querySelector("form");
 form.addEventListener("submit", cityName);
 
 function showTemp(response) {
-    let humidityDescription = response.data.temperature.humidity;
-    let windDescription = response.data.wind.speed;
-    let humidity = document.querySelector("#humidity");
-    let wind = document.querySelector("#wind");
-    humidity.innerHTML = humidityDescription;
-    wind.innerHTML = windDescription;
+  let humidityDescription = response.data.temperature.humidity;
+  console.log(humidityDescription);
+  let windDescription = response.data.wind.speed;
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#wind");
+  humidity.innerHTML = humidityDescription;
+  wind.innerHTML = windDescription;
   let temp = Math.round(response.data.temperature.current);
   let newTemp = document.querySelector("#temp");
   newTemp.innerHTML = temp;
@@ -87,8 +88,7 @@ function clickedButton() {
     }
     let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
-    axios
-      .get(apiUrl).then(showLocationTemp);
+    axios.get(apiUrl).then(showLocationTemp);
   }
 
   navigator.geolocation.getCurrentPosition(getPosition);
