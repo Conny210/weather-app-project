@@ -65,6 +65,7 @@ function showTemp(response) {
   let icon = document.querySelector("#weather-icon");
   let weatherDescription = document.querySelector("#weatherDescription");
 
+  newTemp.innerHTML = Math.round(response.data.temperature.current);
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
   weatherDescription.innerHTML = response.data.condition.description;
@@ -74,11 +75,7 @@ function showTemp(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   icon.setAttribute("alt", response.data.condition.description);
-  
 
-  let temp = Math.round(response.data.temperature.current);
- 
-  newTemp.innerHTML = temp;
 }
 
 function clickedButton() {
