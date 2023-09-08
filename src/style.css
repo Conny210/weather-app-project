@@ -19,15 +19,21 @@ form {
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 60px;
   font-weight: 1000;
   background: -webkit-linear-gradient(violet,pink);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   }
 
 h3 {
   line-height: 25px;
+}
+
+a {
+  color: hotpink;
 }
 
 #temp-wrapper {
@@ -35,7 +41,12 @@ h3 {
 }
 
 #temp {
-  font-size: 35pt;
+  font-size: 50pt;
+   background: -webkit-linear-gradient(violet,pink);
+     -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 ul {
   list-style: none;
