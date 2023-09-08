@@ -2,11 +2,29 @@ body {
   display: block;
   text-align: center;
   font-family: cursive;
+  
+  
+}
+
+.borderexample {
+ border-width:3px;
+ border-style:solid;
+ border-color: palevioletred;
+ padding: auto 50px;
+ margin: auto 450px;;
 }
 
 form {
     padding-top: 25px;
 }
+
+h1 {
+  font-size: 50px;
+  font-weight: 1000;
+  background: -webkit-linear-gradient(violet,pink);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  }
 
 h3 {
   line-height: 25px;
@@ -25,5 +43,7 @@ ul {
 
 button {
   margin: 15px;
-  background: cyan;
+  background-image: linear-gradient(pink, palevioletred);
+  border-radius: 15px;
+  border-style: none;
 }

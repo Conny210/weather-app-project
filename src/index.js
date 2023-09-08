@@ -43,6 +43,14 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function initialLoad(params) {
+  let initialSearch = "Polokwane";
+  let city = document.querySelector("#city");
+  city.innerHTML = initialSearch;
+
+  search(initialSearch);
+}
+
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
@@ -142,4 +150,4 @@ function clickedButton() {
 let element = document.querySelector("button");
 element.addEventListener("click", clickedButton);
 
-search("Polokwane");
+initialLoad();
