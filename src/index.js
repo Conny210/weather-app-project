@@ -27,30 +27,44 @@ let dateTime = `${currentDay} ${hour}:${minutes}`;
 let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
+function formatDate(dateDay) {
+  let date = new Date(dateDay * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
 
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
-
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2">
-        <div class="weatherForecastDate">${day}</div>
+        <div class="weatherForecastDate">${formatDate(forecastDay.time)}</div>
         <img
-          src="http://openweathermap.org/img/wn/50d@2x.png"
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastDay.condition.icon
+          }.png"
           alt=""
           width="42"
         />
         <div class="weatheForecastTemps">
-          <span class="weatherForecastMaxTemp"> 18° </span>
-          <span class="weatherForecastMinTemp"> 12° </span>
+          <span class="weatherForecastMaxTemp"> ${Math.round(
+            forecastDay.temperature.maximum
+          )}° </span>
+          <span class="weatherForecastMinTemp"> ${Math.round(
+            forecastDay.temperature.minimum
+          )}° </span>
         </div>
       </div>
   `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
@@ -95,15 +109,13 @@ form.addEventListener("submit", handleSubmit);
 let celciusTemp = 0;
 let originalTempInCelsius = 0;
 
-
-
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   let newTemp = document.querySelector("#temp");
   let icon = document.querySelector("#weather-icon");
   let weatherDescription = document.querySelector("#weatherDescription");
-   let city = document.querySelector("#city");
+  let city = document.querySelector("#city");
 
   celciusTemp = Math.round(response.data.temperature.current);
   originalTempInCelsius = celciusTemp;
@@ -111,7 +123,7 @@ function showTemp(response) {
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
   weatherDescription.innerHTML = response.data.condition.description;
-  city.innerHTML = response.data.city
+  city.innerHTML = response.data.city;
 
   getForecast(response.data.city);
 
@@ -140,52 +152,10 @@ function clickedButton() {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
     let units = "metric";
-
-    let currentCelciusTemp = 0;
-    let currentFahrenheitTemp = 0;
-
-    function showLocationTemp(response) {
-      let newLocTemp = document.querySelector("#temp");
-      newLocTemp.innerHTML = Math.round(response.data.temperature.current);
-
-      let currentCityLoc = document.querySelector("#city");
-      currentCityLoc.innerHTML = response.data.city;
-
-      let currentHumidity = document.querySelector("#humidity");
-      currentHumidity.innerHTML = response.data.temperature.humidity;
-
-      let currentWind = document.querySelector("#wind");
-      currentWind.innerHTML = response.data.wind.speed;
-
-      let currentWeather = document.querySelector("#weatherDescription");
-      currentWeather.innerHTML = response.data.condition.description;
-
-      let currentIcon = document.querySelector("#weather-icon");
-      currentIcon.setAttribute(
-        "src",
-        `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-      );
-      currentIcon.setAttribute("alt", response.data.condition.description);
-
-      currentCelciusTemp = Math.round(response.data.temperature.current);
-      currentFahrenheitTemp = Math.round((currentCelciusTemp * 9) / 5 + 32);
-
-      let currentTemp = document.querySelector("#temp");
-      let currentCelcius = document.querySelector("#celcius");
-      let currentFahrenheit = document.querySelector("#fahrenheit");
-
-      currentCelcius.addEventListener("click", function () {
-        currentTemp.innerHTML = currentCelciusTemp;
-      });
-
-      currentFahrenheit.addEventListener("click", function () {
-        currentTemp.innerHTML = currentFahrenheitTemp;
-      });
-    }
-
     let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(showLocationTemp);
+
+    axios.get(apiUrl).then(showTemp);
   }
 
   navigator.geolocation.getCurrentPosition(getPosition);
