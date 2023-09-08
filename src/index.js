@@ -27,7 +27,8 @@ let dateTime = `${currentDay} ${hour}:${minutes}`;
 let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
   let forecastElement = document.querySelector("#forecast");
 
   let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
@@ -54,7 +55,6 @@ function displayForecast() {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 
 function search(city) {
@@ -73,6 +73,14 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function getForecast(city) {
+  let units = "metric";
+  let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+getForecast();
+
 function initialLoad(params) {
   let initialSearch = "Polokwane";
   let city = document.querySelector("#city");
@@ -87,12 +95,15 @@ form.addEventListener("submit", handleSubmit);
 let celciusTemp = 0;
 let originalTempInCelsius = 0;
 
+
+
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   let newTemp = document.querySelector("#temp");
   let icon = document.querySelector("#weather-icon");
   let weatherDescription = document.querySelector("#weatherDescription");
+   let city = document.querySelector("#city");
 
   celciusTemp = Math.round(response.data.temperature.current);
   originalTempInCelsius = celciusTemp;
@@ -100,6 +111,9 @@ function showTemp(response) {
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
   weatherDescription.innerHTML = response.data.condition.description;
+  city.innerHTML = response.data.city
+
+  getForecast(response.data.city);
 
   icon.setAttribute(
     "src",
