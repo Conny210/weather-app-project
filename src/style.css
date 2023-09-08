@@ -35,8 +35,16 @@ a {
   color: hotpink;
 }
 
-#temp-wrapper {
-  padding: 25px;
+#humid{
+  font-style: oblique;
+  font-weight: 1000;
+  color: palevioletred;
+}
+
+#windy{
+  font-style: oblique;
+  font-weight: 1000;
+  color: palevioletred;
 }
 
 #temp {
