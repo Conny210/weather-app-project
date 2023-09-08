@@ -62,6 +62,7 @@ a:active {
 }
 ul {
   list-style: none;
+  padding-bottom: 25px;
 }
 
 p {
@@ -74,8 +75,9 @@ button {
   border-style: none;
 }
 .weatherForecastTemps{
-  color: hotpink;
+  color: aquamarine;
+  font-weight: 500;
 }
 .weatherForecastMinTemp {
-  opacity: 50%;
+  opacity: 60%;
 }
