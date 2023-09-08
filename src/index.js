@@ -106,9 +106,6 @@ function initialLoad(params) {
 let form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
-let celciusTemp = 0;
-let originalTempInCelsius = 0;
-
 function showTemp(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
@@ -117,9 +114,7 @@ function showTemp(response) {
   let weatherDescription = document.querySelector("#weatherDescription");
   let city = document.querySelector("#city");
 
-  celciusTemp = Math.round(response.data.temperature.current);
-  originalTempInCelsius = celciusTemp;
-  newTemp.innerHTML = celciusTemp;
+  newTemp.innerHTML = Math.round(response.data.temperature.current);
   humidity.innerHTML = response.data.temperature.humidity;
   wind.innerHTML = response.data.wind.speed;
   weatherDescription.innerHTML = response.data.condition.description;
@@ -133,19 +128,6 @@ function showTemp(response) {
   );
   icon.setAttribute("alt", response.data.condition.description);
 }
-
-let celcius = document.querySelector("#celcius");
-celcius.addEventListener("click", function () {
-  let temp = document.querySelector("#temp");
-  temp.innerHTML = originalTempInCelsius;
-});
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", function () {
-  let temp = document.querySelector("#temp");
-  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
-  temp.innerHTML = fahrenheitTemp;
-});
 
 function clickedButton() {
   function getPosition(position) {

@@ -31,14 +31,6 @@ h3 {
   line-height: 25px;
 }
 
-a {
-  color: hotpink;
-}
-
-a:active {
-  color: aqua;
-}
-
 #humid{
   font-style: oblique;
   font-weight: 1000;
@@ -65,6 +57,10 @@ ul {
   padding-bottom: 25px;
 }
 
+a {
+  color: hotpink;
+}
+
 p {
   padding-top: 50px;
 }
@@ -75,9 +71,17 @@ button {
   border-style: none;
 }
 .weatherForecastTemps{
-  color: aquamarine;
+  color: hotpink;
   font-weight: 500;
 }
 .weatherForecastMinTemp {
   opacity: 60%;
+}
+
+#temp-wrapper {
+padding-top: 25px;
+}
+#unit {
+  vertical-align: top;
+  color: hotpink;
 }
