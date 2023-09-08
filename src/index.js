@@ -27,6 +27,36 @@ let dateTime = `${currentDay} ${hour}:${minutes}`;
 let date = document.querySelector("#date");
 date.innerHTML = `${dateTime}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="weatherForecastDate">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weatheForecastTemps">
+          <span class="weatherForecastMaxTemp"> 18° </span>
+          <span class="weatherForecastMinTemp"> 12° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+
 function search(city) {
   let units = "metric";
   let apiKey = "0ffeeb933d0b51c0bd7ob493d69aftd6";
@@ -151,3 +181,4 @@ let element = document.querySelector("button");
 element.addEventListener("click", clickedButton);
 
 initialLoad();
+displayForecast();
